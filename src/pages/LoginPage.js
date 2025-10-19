@@ -37,7 +37,7 @@ function LoginPage() {
             setError('');
             const response = await axios.post('http://13.217.113.139/auth/verify_email_code', {
                 email: email,
-                code: otp,
+                code: otp
             });
             console.log(response.status);
             try {
@@ -47,9 +47,9 @@ function LoginPage() {
                 console.log(e)
             }
 
-            if (response.status === 200) {
+            if (response.status === 200 && response.data.access_token) {
 
-                dispatch(setToken(response.data.token));
+                dispatch(setToken(response.data.access_token));
                 alert('Login successful');
             } else {
                 setError('Invalid OTP');
